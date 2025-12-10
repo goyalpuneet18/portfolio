@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Puneet Goyal | Portfolio Terminal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --glow-green: #32ff7e;
+      --light-green: #45ff8f;
+      --dark-green: #1a532e;
+      --background: #0a0a0a;
+      --text-color: #e0e0e0;
+    }
+
+    body {
+      background: linear-gradient(to top, rgba(88, 54, 134, 0.4) 0%, rgba(10, 10, 10, 0) 50%), var(--background);
+      color: var(--text-color);
+      font-family: 'Source Code Pro', monospace;
+      overscroll-behavior: none;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--dark-green);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--light-green);
+    }
+
+    ::selection {
+      background: var(--glow-green);
+      color: var(--background);
+    }
+    
+    @keyframes blink {
+      50% { background-color: transparent; }
+    }
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1.2rem;
+      background-color: var(--glow-green);
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+      vertical-align: middle;
+    }
+
+    .terminal-link {
+      color: var(--glow-green);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .terminal-link:hover {
+        background-color: var(--dark-green);
+    }
+
+    .command-output ul {
+        list-style-position: inside;
+        padding-left: 1rem;
+    }
+    .command-output li {
+        margin-bottom: 0.5rem;
+    }
+    .command-output h3 {
+        font-weight: bold;
+        color: var(--light-green);
+    }
+
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "rxjs": "https://aistudiocdn.com/rxjs@^7.8.2?conditions=es2015",
+    "rxjs/operators": "https://aistudiocdn.com/rxjs@^7.8.2/operators?conditions=es2015",
+    "rxjs/ajax": "https://aistudiocdn.com/rxjs@^7.8.2/ajax?conditions=es2015",
+    "rxjs/webSocket": "https://aistudiocdn.com/rxjs@^7.8.2/webSocket?conditions=es2015",
+    "rxjs/testing": "https://aistudiocdn.com/rxjs@^7.8.2/testing?conditions=es2015",
+    "rxjs/fetch": "https://aistudiocdn.com/rxjs@^7.8.2/fetch?conditions=es2015",
+    "@google/genai": "https://next.esm.sh/@google/genai@^1.31.0?external=rxjs",
+    "@angular/compiler": "https://next.esm.sh/@angular/compiler@^21.0.3?external=rxjs",
+    "@angular/platform-browser": "https://next.esm.sh/@angular/platform-browser@^21.0.3?external=rxjs",
+    "@angular/common/http": "https://next.esm.sh/@angular/common@^21.0.3/http?external=rxjs",
+    "@angular/core": "https://next.esm.sh/@angular/core@^21.0.3?external=rxjs",
+    "@angular/forms": "https://next.esm.sh/@angular/forms@^21.0.3?external=rxjs",
+    "@angular/router": "https://next.esm.sh/@angular/router@^21.0.3?external=rxjs",
+    "@angular/common": "https://next.esm.sh/@angular/common@^21.0.3?external=rxjs"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-black text-gray-200 antialiased">
+  <app-root></app-root>
+</body>
+</html>
