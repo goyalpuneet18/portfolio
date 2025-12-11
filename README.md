@@ -31,7 +31,6 @@ This project is a unique take on a personal portfolio, presenting information th
 - **Framework**: [Angular 19+](https://angular.io/) (Latest Standalone Components)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Animation**: [RxJS](https://rxjs.dev/) & Physics-based interactions
-- **Build Tool**: [Vite](https://vitejs.dev/)
 - **Deployment**: GitHub Pages via `angular-cli-ghpages`
 
 ## ⌨️ Available Commands
