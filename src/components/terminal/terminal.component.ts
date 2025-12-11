@@ -95,8 +95,8 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
         <p>You can also click on the commands in the header.</p>
     `,
     'clear': () => {
-        this.history.set([]);
-        return '';
+      this.history.set([]);
+      return '';
     }
   };
 
@@ -129,10 +129,10 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   private skillsByCategory = [
-      { category: 'Programming Languages', list: ['Java', 'Python', 'Dot-Net Core', 'Node.js', 'MongoDB', 'MS SQL', 'Kotlin', 'JavaScript'] },
-      { category: 'Frameworks', list: ['Angular 12+', 'React', 'Spring-boot 3', 'Flutter', 'Flask', 'Kafka', 'Moon.js'] },
-      { category: 'Tools', list: ['Git-lab', 'Pivotal Cloud Foundry', 'Docker', 'Selenium', 'Kubernetes', 'Figma'] },
-      { category: 'AI/ML Models', list: ['Llama-3-1-8b-instruct', 'Mistral-7b-instruct-v03'] }
+    { category: 'Programming Languages', list: ['Java', 'Python', 'Dot-Net Core', 'Node.js', 'MongoDB', 'MS SQL', 'Kotlin', 'JavaScript'] },
+    { category: 'Frameworks', list: ['Angular 12+', 'React', 'Spring-boot 3', 'Flutter', 'Flask', 'Kafka', 'Moon.js'] },
+    { category: 'Tools', list: ['Git-lab', 'Pivotal Cloud Foundry', 'Docker', 'Selenium', 'Kubernetes', 'Figma'] },
+    { category: 'AI/ML Models', list: ['Llama-3-1-8b-instruct', 'Mistral-7b-instruct-v03'] }
   ];
 
   constructor() {
@@ -160,7 +160,7 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
         this.cardPosition = { ...this.restingPosition };
         this.initInteractiveCard();
         this.updateLanyard();
-      }, 0);
+      }, 300);
     }
   }
 
@@ -180,7 +180,7 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
   focusInput(): void {
     setTimeout(() => this.inputField.nativeElement.focus(), 0);
   }
-  
+
   runCommandFromHeader(cmd: string): void {
     if (this.isProcessing()) return;
 
@@ -189,20 +189,20 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isProcessing.set(true);
 
     setTimeout(async () => {
-        await this.executeCommand(cmd);
-        if (cmd === 'clear') {
-            await this.executeCommand('welcome');
-        }
-        this.isProcessing.set(false);
-        this.focusInput();
+      await this.executeCommand(cmd);
+      if (cmd === 'clear') {
+        await this.executeCommand('welcome');
+      }
+      this.isProcessing.set(false);
+      this.focusInput();
     }, 100);
   }
 
   onCommandSubmit(): void {
     const commandText = this.command().trim().toLowerCase();
     if (commandText === '') {
-        this.history.update(h => [...h, `<span class="text-green-400 font-bold">${this.prompt}</span>`]);
-        return;
+      this.history.update(h => [...h, `<span class="text-green-400 font-bold">${this.prompt}</span>`]);
+      return;
     };
 
     this.history.update(h => [...h, `<span class="text-green-400 font-bold">${this.prompt}</span> ${commandText}`]);
@@ -210,24 +210,24 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isProcessing.set(true);
 
     setTimeout(async () => {
-        await this.executeCommand(commandText);
-        if (commandText === 'clear') {
-            await this.executeCommand('welcome');
-        }
-        this.isProcessing.set(false);
-        this.focusInput();
+      await this.executeCommand(commandText);
+      if (commandText === 'clear') {
+        await this.executeCommand('welcome');
+      }
+      this.isProcessing.set(false);
+      this.focusInput();
     }, 300);
   }
 
   private async executeCommand(cmd: string): Promise<void> {
     const commandFn = this.commands[cmd];
     if (commandFn) {
-        const output = commandFn();
-        if(output) {
-          await this.typeOutput(output);
-        }
+      const output = commandFn();
+      if (output) {
+        await this.typeOutput(output);
+      }
     } else {
-        await this.typeOutput(`<span class="text-red-500">bash: ${cmd}: command not found</span>`, 5);
+      await this.typeOutput(`<span class="text-red-500">bash: ${cmd}: command not found</span>`, 5);
     }
   }
 
@@ -239,7 +239,7 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
       const typeWriter = () => {
         if (i < text.length) {
           let partToAppend = text[i];
-          
+
           if (partToAppend === '<') {
             const tagEndIndex = text.indexOf('>', i);
             if (tagEndIndex !== -1) {
@@ -274,7 +274,7 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
   private scrollToBottom(): void {
     try {
       this.terminalScreen.nativeElement.scrollTop = this.terminalScreen.nativeElement.scrollHeight;
-    } catch (err) {}
+    } catch (err) { }
   }
 
   private initInteractiveCard(): void {
@@ -314,7 +314,7 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
         this.cardPosition = { x: newX, y: newY };
         wrapper.style.left = `${newX}px`;
         wrapper.style.top = `${newY}px`;
-        
+
         this.updateLanyard();
       }
     };
@@ -328,7 +328,7 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
         this.runPhysics();
       }
     };
-    
+
     const onContainerMouseMove = (e: MouseEvent) => {
       if (!this.isDragging) {
         const rect = container.getBoundingClientRect();
@@ -338,21 +338,21 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
         const centerY = rect.height / 2;
         const deltaX = x - centerX;
         const deltaY = y - centerY;
-        
+
         const maxRotate = 15;
         const rotateX = (deltaY / centerY) * -maxRotate;
         const rotateY = (deltaX / centerX) * maxRotate;
-        
+
         card.style.transition = 'transform 0.1s linear';
         card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       }
     };
 
     const onContainerMouseLeave = () => {
-        if (!this.isDragging) {
-            card.style.transition = 'transform 0.5s ease-out';
-            card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-        }
+      if (!this.isDragging) {
+        card.style.transition = 'transform 0.5s ease-out';
+        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      }
     };
 
 
@@ -377,27 +377,27 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.cardVelocity.x = (this.cardVelocity.x + forceX) * this.damping;
     this.cardVelocity.y = (this.cardVelocity.y + forceY) * this.damping;
-    
+
     this.cardPosition.x += this.cardVelocity.x;
     this.cardPosition.y += this.cardVelocity.y;
 
     this.cardWrapper.nativeElement.style.left = `${this.cardPosition.x}px`;
     this.cardWrapper.nativeElement.style.top = `${this.cardPosition.y}px`;
-    
+
     this.updateLanyard();
 
-    const speed = Math.sqrt(this.cardVelocity.x**2 + this.cardVelocity.y**2);
-    const displacement = Math.sqrt(dx**2 + dy**2);
+    const speed = Math.sqrt(this.cardVelocity.x ** 2 + this.cardVelocity.y ** 2);
+    const displacement = Math.sqrt(dx ** 2 + dy ** 2);
 
     if (speed < 0.1 && displacement < 0.1) {
-        this.cardWrapper.nativeElement.style.left = `${this.restingPosition.x}px`;
-        this.cardWrapper.nativeElement.style.top = `${this.restingPosition.y}px`;
-        this.cardPosition = { ...this.restingPosition };
-        this.cardVelocity = { x: 0, y: 0 };
-        this.updateLanyard();
-        this.physicsAnimationId = null;
+      this.cardWrapper.nativeElement.style.left = `${this.restingPosition.x}px`;
+      this.cardWrapper.nativeElement.style.top = `${this.restingPosition.y}px`;
+      this.cardPosition = { ...this.restingPosition };
+      this.cardVelocity = { x: 0, y: 0 };
+      this.updateLanyard();
+      this.physicsAnimationId = null;
     } else {
-        this.physicsAnimationId = requestAnimationFrame(this.runPhysics.bind(this));
+      this.physicsAnimationId = requestAnimationFrame(this.runPhysics.bind(this));
     }
   }
 
@@ -412,7 +412,7 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
     const path = this.lanyardPath.nativeElement;
     const clip = this.lanyardClip.nativeElement;
     const anchorClip = this.lanyardAnchorClip.nativeElement;
-    
+
     const anchorX = container.offsetWidth / 2;
 
     anchorClip.setAttribute('transform', `translate(${anchorX}, 0)`);
@@ -426,10 +426,10 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
       x: wrapper.offsetLeft + wrapper.offsetWidth / 2,
       y: wrapper.offsetTop,
     };
-    
+
     const midX = (anchorPoint.x + cardAttachPoint.x) / 2;
     const midY = (anchorPoint.y + cardAttachPoint.y) / 2;
-    
+
     const sag = Math.abs(anchorPoint.x - cardAttachPoint.x) * 0.3 + 20;
 
     const controlPoint = {
@@ -442,7 +442,7 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
 
     clip.setAttribute('transform', `translate(${cardAttachPoint.x}, ${cardAttachPoint.y})`);
   }
-  
+
   private getHelpOutput(): string {
     return `
       <h3>Available commands:</h3>
@@ -458,43 +458,43 @@ export class TerminalComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private getCommandDescription(cmd: string): string {
-      const descriptions: Record<string, string> = {
-        'help': 'Shows this help message.',
-        'about': 'Learn about me.',
-        'projects': 'View my projects.',
-        'skills': 'See my technical skills.',
-        'contact': 'How to reach me.',
-        'certifications': 'View my certifications.',
-        'clear': 'Clear the terminal.'
-      };
-      return descriptions[cmd] || 'No description available.';
+    const descriptions: Record<string, string> = {
+      'help': 'Shows this help message.',
+      'about': 'Learn about me.',
+      'projects': 'View my projects.',
+      'skills': 'See my technical skills.',
+      'contact': 'How to reach me.',
+      'certifications': 'View my certifications.',
+      'clear': 'Clear the terminal.'
+    };
+    return descriptions[cmd] || 'No description available.';
   }
 
   private getProjectsOutput(): string {
-      let output = '<h3><span class="text-green-400">✓</span> Projects:</h3><ul>';
-      this.projectsData.forEach((p, i) => {
-          output += `
+    let output = '<h3><span class="text-green-400">✓</span> Projects:</h3><ul>';
+    this.projectsData.forEach((p, i) => {
+      output += `
             <li class="mb-4">
                 <p>${i + 1}. ${p.title}</p>
                 <p class="pl-4">${p.description}</p>
                 <p class="pl-4 text-gray-400">Technologies: ${p.tech}</p>
             </li>
           `;
-      });
-      output += '</ul>';
-      return output;
+    });
+    output += '</ul>';
+    return output;
   }
-  
+
   private getSkillsOutput(): string {
-      let output = '<h3>🛠️ Skills:</h3>';
-      this.skillsByCategory.forEach(cat => {
-          output += `
+    let output = '<h3>🛠️ Skills:</h3>';
+    this.skillsByCategory.forEach(cat => {
+      output += `
             <div class="mb-2">
                 <h4 class="underline">${cat.category}:</h4>
                 <p class="text-gray-300">${cat.list.join(', ')}</p>
             </div>
           `;
-      });
-      return output;
+    });
+    return output;
   }
 }
