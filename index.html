@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <title>Puneet Goyal | Portfolio Terminal</title>
@@ -28,13 +29,16 @@
     ::-webkit-scrollbar {
       width: 8px;
     }
+
     ::-webkit-scrollbar-track {
       background: #1a1a1a;
     }
+
     ::-webkit-scrollbar-thumb {
       background: var(--dark-green);
       border-radius: 4px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: var(--light-green);
     }
@@ -43,10 +47,13 @@
       background: var(--glow-green);
       color: var(--background);
     }
-    
+
     @keyframes blink {
-      50% { background-color: transparent; }
+      50% {
+        background-color: transparent;
+      }
     }
+
     .cursor {
       display: inline-block;
       width: 10px;
@@ -62,24 +69,26 @@
       text-decoration: underline;
       cursor: pointer;
     }
+
     .terminal-link:hover {
-        background-color: var(--dark-green);
+      background-color: var(--dark-green);
     }
 
     .command-output ul {
-        list-style-position: inside;
-        padding-left: 1rem;
-    }
-    .command-output li {
-        margin-bottom: 0.5rem;
-    }
-    .command-output h3 {
-        font-weight: bold;
-        color: var(--light-green);
+      list-style-position: inside;
+      padding-left: 1rem;
     }
 
+    .command-output li {
+      margin-bottom: 0.5rem;
+    }
+
+    .command-output h3 {
+      font-weight: bold;
+      color: var(--light-green);
+    }
   </style>
-<script type="importmap">
+  <script type="importmap">
 {
   "imports": {
     "rxjs": "https://aistudiocdn.com/rxjs@^7.8.2?conditions=es2015",
@@ -99,9 +108,11 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/index.css">
 </head>
+
 <body class="bg-black text-gray-200 antialiased">
   <app-root></app-root>
 </body>
+
 </html>
